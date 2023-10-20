@@ -1,0 +1,5 @@
+* homelab
+------------------
+exploring technologies
+
+This repository is hosts entire homelab project containing multiple components. This code is used to host my private website :)

@@ -1,2 +1,0 @@
-# homelab
-Exploring technologies
