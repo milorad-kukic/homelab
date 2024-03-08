@@ -1,36 +1,32 @@
-* Project infrastructure
------
-Whole project is hosted on Raspberry Pi 4 cluster
+* Setting up Raspberry Pi
 
-** Setting up Raspberry Pi
+** Install Ubuntu Server 22/4 LTS
+** Connect it to network
 
-1. Install Ubuntu Server 22/4 LTS
-2. Connect it to network
-   I plugged my raspberry pi into the switch
+I plugged my raspberry pi into the switch
 
-   In order to find the address and connect to it through ssh, we can use nmap tool. In my case it was:
+In order to find the address and connect to it through ssh, we can use nmap tool. In my case it was:
 
-   #+begin_src bash
-   sudo nmap -sP 192.168.0.0/24 | grep -i raspberry -B3
-   #+end_src
+#+begin_src bash
+sudo nmap -sP 192.168.0.0/24 | grep -i raspberry -B3
+#+end_src
 
-3. SSH into the machine
+** SSH into the machine
 
-   #+begin_src bash
-   ssh ubuntu@your_ip
-   #+end_src
+#+begin_src bash
+ssh ubuntu@your_ip
+#+end_src
 
-4. Change host name
+** Change host name
 
-   #+begin_src bash
-   sudo hostnamectl set-hostname worker14
-   #+end_src
+#+begin_src bash
+sudo hostnamectl set-hostname worker14
+#+end_src
 
-5. Set static IP address
+** Set static IP address
+For each of the devices edit `/etc/netplan/50-cloud-init.yaml` to have following content (set different IP addresses):
 
-   For each of the devices edit `/etc/netplan/50-cloud-init.yaml` to have following content (set different IP addresses):
-
-   ``
+#+begin_src text
    network:
      ethernets:
        eth0:
@@ -41,16 +37,16 @@ Whole project is hosted on Raspberry Pi 4 cluster
          - to: 0.0.0.0/0
          via: 192.168.0.1
    version: 2
-   ``
+#+end_src
 
-   Reduce file permissions on that file:
+Reduce file permissions on that file:
 
-   #+begin_src bash
-   sudo chmod 600 /etc/netplan/50-cloud-init.yaml
-   #+end_src
+#+begin_src bash
+sudo chmod 600 /etc/netplan/50-cloud-init.yaml
+#+end_src
 
-   Finally, let's apply new configuration:
+Finally, let's apply new configuration:
 
-   #+begin_src bash
-   sudo netplan apply
-   #+end_src
+#+begin_src bash
+sudo netplan apply
+#+end_src
