@@ -1,6 +1,8 @@
 * Setting up Raspberry Pi
 
 ** Install Ubuntu Server 22/4 LTS
+instructions can be found [[https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overview][HERE]]
+
 ** Connect it to network
 
 I plugged my raspberry pi into the switch
